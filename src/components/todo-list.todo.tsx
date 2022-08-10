@@ -11,10 +11,11 @@ import debounce from 'lodash.debounce'
 
 const TodoListTodo = (props: {
   title: string
+  description?: string | null
   id: string
   complete?: boolean | null
 }) => {
-  const { id, title, complete } = props
+  const { id, title, description, complete } = props
   const contextDeleteTodoList = useMemo(
     () => ({ additionalTypenames: ['TodoList'] }),
     []
@@ -29,6 +30,10 @@ const TodoListTodo = (props: {
 
   const onTitleChange = debounce((title: string) => {
     onTodoUpdate({ title })
+  }, 500)
+
+  const onDescriptionChange = debounce((description: string) => {
+    onTodoUpdate({ description })
   }, 500)
 
   const onCheckboxClick = () =>
@@ -65,6 +70,13 @@ const TodoListTodo = (props: {
                 completed ? 'text-white' : 'text-black dark:text-white'
               }`}
               onChange={(e) => onTitleChange(e?.target?.value)}
+            />
+            <input
+              defaultValue={description ?? ""}
+              className={`bg-transparent focus:outline-0 focus:text-blue-600 focus:dark:text-blue-400 ${
+                completed ? 'text-white' : 'text-black dark:text-white'
+              }`}
+              onChange={(e) => onDescriptionChange(e?.target?.value)}
             />
           </div>
           <button

@@ -1,939 +1,1003 @@
-import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/core'
-export type Maybe<T> = T | null
-export type InputMaybe<T> = Maybe<T>
+import { TypedDocumentNode as DocumentNode } from "@graphql-typed-document-node/core";
+export type Maybe<T> = T | null;
+export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = {
-  [K in keyof T]: T[K]
-}
+  [K in keyof T]: T[K];
+};
 export type MakeOptional<T, K extends keyof T> = Omit<T, K> & {
-  [SubKey in K]?: Maybe<T[SubKey]>
-}
+  [SubKey in K]?: Maybe<T[SubKey]>;
+};
 export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & {
-  [SubKey in K]: Maybe<T[SubKey]>
-}
+  [SubKey in K]: Maybe<T[SubKey]>;
+};
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
-  ID: string
-  String: string
-  Boolean: boolean
-  Int: number
-  Float: number
-}
+  ID: string;
+  String: string;
+  Boolean: boolean;
+  Int: number;
+  Float: number;
+};
 
 export type Mutation = {
-  __typename?: 'Mutation'
+  __typename?: "Mutation";
   /** Create a Todo */
-  todoCreate?: Maybe<TodoCreatePayload>
+  todoCreate?: Maybe<TodoCreatePayload>;
   /** Delete a Todo by ID */
-  todoDelete?: Maybe<TodoDeletePayload>
+  todoDelete?: Maybe<TodoDeletePayload>;
   /** Create a TodoList */
-  todoListCreate?: Maybe<TodoListCreatePayload>
+  todoListCreate?: Maybe<TodoListCreatePayload>;
   /** Delete a TodoList by ID */
-  todoListDelete?: Maybe<TodoListDeletePayload>
+  todoListDelete?: Maybe<TodoListDeletePayload>;
   /** Update a TodoList */
-  todoListUpdate?: Maybe<TodoListUpdatePayload>
+  todoListUpdate?: Maybe<TodoListUpdatePayload>;
   /** Update a Todo */
-  todoUpdate?: Maybe<TodoUpdatePayload>
-}
+  todoUpdate?: Maybe<TodoUpdatePayload>;
+};
 
 export type MutationTodoCreateArgs = {
-  input: TodoCreateInput
-}
+  input: TodoCreateInput;
+};
 
 export type MutationTodoDeleteArgs = {
-  id: Scalars['ID']
-}
+  id: Scalars["ID"];
+};
 
 export type MutationTodoListCreateArgs = {
-  input: TodoListCreateInput
-}
+  input: TodoListCreateInput;
+};
 
 export type MutationTodoListDeleteArgs = {
-  id: Scalars['ID']
-}
+  id: Scalars["ID"];
+};
 
 export type MutationTodoListUpdateArgs = {
-  id: Scalars['ID']
-  input: TodoListUpdateInput
-}
+  id: Scalars["ID"];
+  input: TodoListUpdateInput;
+};
 
 export type MutationTodoUpdateArgs = {
-  id: Scalars['ID']
-  input: TodoUpdateInput
-}
+  id: Scalars["ID"];
+  input: TodoUpdateInput;
+};
 
 export type PageInfo = {
-  __typename?: 'PageInfo'
-  endCursor?: Maybe<Scalars['String']>
-  hasNextPage: Scalars['Boolean']
-  hasPreviousPage: Scalars['Boolean']
-  startCursor?: Maybe<Scalars['String']>
-}
+  __typename?: "PageInfo";
+  endCursor?: Maybe<Scalars["String"]>;
+  hasNextPage: Scalars["Boolean"];
+  hasPreviousPage: Scalars["Boolean"];
+  startCursor?: Maybe<Scalars["String"]>;
+};
 
 export type Query = {
-  __typename?: 'Query'
+  __typename?: "Query";
   /** Get a Todo by ID */
-  todo?: Maybe<Todo>
+  todo?: Maybe<Todo>;
   /** Paginated query to fetch the whole list of `Todo`. */
-  todoCollection?: Maybe<TodoConnection>
+  todoCollection?: Maybe<TodoConnection>;
   /** Get a TodoList by ID */
-  todoList?: Maybe<TodoList>
+  todoList?: Maybe<TodoList>;
   /** Paginated query to fetch the whole list of `TodoList`. */
-  todoListCollection?: Maybe<TodoListConnection>
-}
+  todoListCollection?: Maybe<TodoListConnection>;
+};
 
 export type QueryTodoArgs = {
-  id: Scalars['ID']
-}
+  id: Scalars["ID"];
+};
 
 export type QueryTodoCollectionArgs = {
-  after?: InputMaybe<Scalars['String']>
-  before?: InputMaybe<Scalars['String']>
-  first?: InputMaybe<Scalars['Int']>
-  last?: InputMaybe<Scalars['Int']>
-}
+  after?: InputMaybe<Scalars["String"]>;
+  before?: InputMaybe<Scalars["String"]>;
+  first?: InputMaybe<Scalars["Int"]>;
+  last?: InputMaybe<Scalars["Int"]>;
+};
 
 export type QueryTodoListArgs = {
-  id: Scalars['ID']
-}
+  id: Scalars["ID"];
+};
 
 export type QueryTodoListCollectionArgs = {
-  after?: InputMaybe<Scalars['String']>
-  before?: InputMaybe<Scalars['String']>
-  first?: InputMaybe<Scalars['Int']>
-  last?: InputMaybe<Scalars['Int']>
-}
+  after?: InputMaybe<Scalars["String"]>;
+  before?: InputMaybe<Scalars["String"]>;
+  first?: InputMaybe<Scalars["Int"]>;
+  last?: InputMaybe<Scalars["Int"]>;
+};
 
 export type Todo = {
-  __typename?: 'Todo'
-  complete: Scalars['Boolean']
-  id: Scalars['ID']
-  list?: Maybe<TodoList>
-  title: Scalars['String']
-}
+  __typename?: "Todo";
+  complete: Scalars["Boolean"];
+  description?: Maybe<Scalars["String"]>;
+  id: Scalars["ID"];
+  list?: Maybe<TodoList>;
+  title: Scalars["String"];
+};
 
 export type TodoConnection = {
-  __typename?: 'TodoConnection'
-  edges?: Maybe<Array<Maybe<TodoEdge>>>
+  __typename?: "TodoConnection";
+  edges?: Maybe<Array<Maybe<TodoEdge>>>;
   /** Information to aid in pagination */
-  pageInfo: PageInfo
-}
+  pageInfo: PageInfo;
+};
 
 /** Input to create a new Todo */
 export type TodoCreateInput = {
-  complete: Scalars['Boolean']
-  list?: InputMaybe<TodoTodoRelateTodoListTodoListCreateRelationInput>
-  title: Scalars['String']
-}
+  complete: Scalars["Boolean"];
+  description?: InputMaybe<Scalars["String"]>;
+  list?: InputMaybe<TodoTodoRelateTodoListTodoListCreateRelationInput>;
+  title: Scalars["String"];
+};
 
 export type TodoCreatePayload = {
-  __typename?: 'TodoCreatePayload'
-  todo?: Maybe<Todo>
-}
+  __typename?: "TodoCreatePayload";
+  todo?: Maybe<Todo>;
+};
 
 export type TodoDeletePayload = {
-  __typename?: 'TodoDeletePayload'
-  deletedId: Scalars['ID']
-}
+  __typename?: "TodoDeletePayload";
+  deletedId: Scalars["ID"];
+};
 
 export type TodoEdge = {
-  __typename?: 'TodoEdge'
-  cursor: Scalars['String']
-  node: Todo
-}
+  __typename?: "TodoEdge";
+  cursor: Scalars["String"];
+  node: Todo;
+};
 
 export type TodoList = {
-  __typename?: 'TodoList'
-  id: Scalars['ID']
-  title: Scalars['String']
-  todos?: Maybe<Array<Maybe<Todo>>>
-}
+  __typename?: "TodoList";
+  id: Scalars["ID"];
+  title: Scalars["String"];
+  todos?: Maybe<Array<Maybe<Todo>>>;
+};
 
 export type TodoListConnection = {
-  __typename?: 'TodoListConnection'
-  edges?: Maybe<Array<Maybe<TodoListEdge>>>
+  __typename?: "TodoListConnection";
+  edges?: Maybe<Array<Maybe<TodoListEdge>>>;
   /** Information to aid in pagination */
-  pageInfo: PageInfo
-}
+  pageInfo: PageInfo;
+};
 
 /** Input to create a new TodoList */
 export type TodoListCreateInput = {
-  title: Scalars['String']
+  title: Scalars["String"];
   todos?: InputMaybe<
     Array<InputMaybe<TodoListTodoRelateTodoListTodoCreateRelationInput>>
-  >
-}
+  >;
+};
 
 export type TodoListCreatePayload = {
-  __typename?: 'TodoListCreatePayload'
-  todoList?: Maybe<TodoList>
-}
+  __typename?: "TodoListCreatePayload";
+  todoList?: Maybe<TodoList>;
+};
 
 export type TodoListDeletePayload = {
-  __typename?: 'TodoListDeletePayload'
-  deletedId: Scalars['ID']
-}
+  __typename?: "TodoListDeletePayload";
+  deletedId: Scalars["ID"];
+};
 
 export type TodoListEdge = {
-  __typename?: 'TodoListEdge'
-  cursor: Scalars['String']
-  node: TodoList
-}
+  __typename?: "TodoListEdge";
+  cursor: Scalars["String"];
+  node: TodoList;
+};
 
 /** Input to create a new TodoListTodoRelateTodoListTodo */
 export type TodoListTodoRelateTodoListTodoCreateInput = {
-  complete: Scalars['Boolean']
-  title: Scalars['String']
-}
+  complete: Scalars["Boolean"];
+  description?: InputMaybe<Scalars["String"]>;
+  title: Scalars["String"];
+};
 
 /** Input to create a new TodoListTodoRelateTodoListTodo relation */
 export type TodoListTodoRelateTodoListTodoCreateRelationInput = {
-  create?: InputMaybe<TodoListTodoRelateTodoListTodoCreateInput>
-  link?: InputMaybe<Scalars['ID']>
-}
+  create?: InputMaybe<TodoListTodoRelateTodoListTodoCreateInput>;
+  link?: InputMaybe<Scalars["ID"]>;
+};
 
 /** Input to update a TodoListTodoRelateTodoListTodo relation */
 export type TodoListTodoRelateTodoListTodoUpdateRelationInput = {
-  create?: InputMaybe<TodoListTodoRelateTodoListTodoCreateInput>
-  link?: InputMaybe<Scalars['ID']>
-  unlink?: InputMaybe<Scalars['ID']>
-}
+  create?: InputMaybe<TodoListTodoRelateTodoListTodoCreateInput>;
+  link?: InputMaybe<Scalars["ID"]>;
+  unlink?: InputMaybe<Scalars["ID"]>;
+};
 
 /** Input to create a new TodoList */
 export type TodoListUpdateInput = {
-  title?: InputMaybe<Scalars['String']>
+  title?: InputMaybe<Scalars["String"]>;
   todos?: InputMaybe<
     Array<InputMaybe<TodoListTodoRelateTodoListTodoUpdateRelationInput>>
-  >
-}
+  >;
+};
 
 export type TodoListUpdatePayload = {
-  __typename?: 'TodoListUpdatePayload'
-  todoList?: Maybe<TodoList>
-}
+  __typename?: "TodoListUpdatePayload";
+  todoList?: Maybe<TodoList>;
+};
 
 /** Input to create a new TodoTodoRelateTodoListTodoList */
 export type TodoTodoRelateTodoListTodoListCreateInput = {
-  title: Scalars['String']
-}
+  title: Scalars["String"];
+};
 
 /** Input to create a new TodoTodoRelateTodoListTodoList relation */
 export type TodoTodoRelateTodoListTodoListCreateRelationInput = {
-  create?: InputMaybe<TodoTodoRelateTodoListTodoListCreateInput>
-  link?: InputMaybe<Scalars['ID']>
-}
+  create?: InputMaybe<TodoTodoRelateTodoListTodoListCreateInput>;
+  link?: InputMaybe<Scalars["ID"]>;
+};
 
 /** Input to update a TodoTodoRelateTodoListTodoList relation */
 export type TodoTodoRelateTodoListTodoListUpdateRelationInput = {
-  create?: InputMaybe<TodoTodoRelateTodoListTodoListCreateInput>
-  link?: InputMaybe<Scalars['ID']>
-  unlink?: InputMaybe<Scalars['ID']>
-}
+  create?: InputMaybe<TodoTodoRelateTodoListTodoListCreateInput>;
+  link?: InputMaybe<Scalars["ID"]>;
+  unlink?: InputMaybe<Scalars["ID"]>;
+};
 
 /** Input to create a new Todo */
 export type TodoUpdateInput = {
-  complete?: InputMaybe<Scalars['Boolean']>
-  list?: InputMaybe<TodoTodoRelateTodoListTodoListUpdateRelationInput>
-  title?: InputMaybe<Scalars['String']>
-}
+  complete?: InputMaybe<Scalars["Boolean"]>;
+  description?: InputMaybe<Scalars["String"]>;
+  list?: InputMaybe<TodoTodoRelateTodoListTodoListUpdateRelationInput>;
+  title?: InputMaybe<Scalars["String"]>;
+};
 
 export type TodoUpdatePayload = {
-  __typename?: 'TodoUpdatePayload'
-  todo?: Maybe<Todo>
-}
+  __typename?: "TodoUpdatePayload";
+  todo?: Maybe<Todo>;
+};
 
 export type TodoListFragment = {
-  __typename?: 'TodoList'
-  id: string
-  title: string
+  __typename?: "TodoList";
+  id: string;
+  title: string;
   todos?: Array<{
-    __typename?: 'Todo'
-    id: string
-    title: string
-    complete: boolean
-  } | null> | null
-}
+    __typename?: "Todo";
+    id: string;
+    title: string;
+    description?: string | null;
+    complete: boolean;
+  } | null> | null;
+};
 
 export type TodoFragment = {
-  __typename?: 'Todo'
-  id: string
-  title: string
-  complete: boolean
-}
+  __typename?: "Todo";
+  id: string;
+  title: string;
+  description?: string | null;
+  complete: boolean;
+};
 
-export type TodoListsQueryVariables = Exact<{ [key: string]: never }>
+export type TodoListsQueryVariables = Exact<{ [key: string]: never }>;
 
 export type TodoListsQuery = {
-  __typename?: 'Query'
+  __typename?: "Query";
   todoListCollection?: {
-    __typename?: 'TodoListConnection'
+    __typename?: "TodoListConnection";
     edges?: Array<{
-      __typename?: 'TodoListEdge'
+      __typename?: "TodoListEdge";
       node: {
-        __typename?: 'TodoList'
-        id: string
-        title: string
+        __typename?: "TodoList";
+        id: string;
+        title: string;
         todos?: Array<{
-          __typename?: 'Todo'
-          id: string
-          title: string
-          complete: boolean
-        } | null> | null
-      }
-    } | null> | null
-  } | null
-}
+          __typename?: "Todo";
+          id: string;
+          title: string;
+          description?: string | null;
+          complete: boolean;
+        } | null> | null;
+      };
+    } | null> | null;
+  } | null;
+};
 
 export type TodoListCreateMutationVariables = Exact<{
-  title: Scalars['String']
-}>
+  title: Scalars["String"];
+}>;
 
 export type TodoListCreateMutation = {
-  __typename?: 'Mutation'
+  __typename?: "Mutation";
   todoListCreate?: {
-    __typename?: 'TodoListCreatePayload'
+    __typename?: "TodoListCreatePayload";
     todoList?: {
-      __typename?: 'TodoList'
-      id: string
-      title: string
+      __typename?: "TodoList";
+      id: string;
+      title: string;
       todos?: Array<{
-        __typename?: 'Todo'
-        id: string
-        title: string
-        complete: boolean
-      } | null> | null
-    } | null
-  } | null
-}
+        __typename?: "Todo";
+        id: string;
+        title: string;
+        description?: string | null;
+        complete: boolean;
+      } | null> | null;
+    } | null;
+  } | null;
+};
 
 export type TodoCreateMutationVariables = Exact<{
-  title: Scalars['String']
-  todoListId: Scalars['ID']
-}>
+  title: Scalars["String"];
+  description?: InputMaybe<Scalars["String"]>;
+  todoListId: Scalars["ID"];
+}>;
 
 export type TodoCreateMutation = {
-  __typename?: 'Mutation'
+  __typename?: "Mutation";
   todoCreate?: {
-    __typename?: 'TodoCreatePayload'
+    __typename?: "TodoCreatePayload";
     todo?: {
-      __typename?: 'Todo'
-      id: string
-      title: string
-      complete: boolean
-    } | null
-  } | null
-}
+      __typename?: "Todo";
+      id: string;
+      title: string;
+      description?: string | null;
+      complete: boolean;
+    } | null;
+  } | null;
+};
 
 export type TodoListDeleteMutationVariables = Exact<{
-  id: Scalars['ID']
-}>
+  id: Scalars["ID"];
+}>;
 
 export type TodoListDeleteMutation = {
-  __typename?: 'Mutation'
+  __typename?: "Mutation";
   todoListDelete?: {
-    __typename?: 'TodoListDeletePayload'
-    deletedId: string
-  } | null
-}
+    __typename?: "TodoListDeletePayload";
+    deletedId: string;
+  } | null;
+};
 
 export type TodoListUpdateMutationVariables = Exact<{
-  id: Scalars['ID']
-  title?: InputMaybe<Scalars['String']>
-}>
+  id: Scalars["ID"];
+  title?: InputMaybe<Scalars["String"]>;
+}>;
 
 export type TodoListUpdateMutation = {
-  __typename?: 'Mutation'
+  __typename?: "Mutation";
   todoListUpdate?: {
-    __typename?: 'TodoListUpdatePayload'
+    __typename?: "TodoListUpdatePayload";
     todoList?: {
-      __typename?: 'TodoList'
-      id: string
-      title: string
+      __typename?: "TodoList";
+      id: string;
+      title: string;
       todos?: Array<{
-        __typename?: 'Todo'
-        id: string
-        title: string
-        complete: boolean
-      } | null> | null
-    } | null
-  } | null
-}
+        __typename?: "Todo";
+        id: string;
+        title: string;
+        description?: string | null;
+        complete: boolean;
+      } | null> | null;
+    } | null;
+  } | null;
+};
 
 export type TodoDeleteMutationVariables = Exact<{
-  id: Scalars['ID']
-}>
+  id: Scalars["ID"];
+}>;
 
 export type TodoDeleteMutation = {
-  __typename?: 'Mutation'
-  todoDelete?: { __typename?: 'TodoDeletePayload'; deletedId: string } | null
-}
+  __typename?: "Mutation";
+  todoDelete?: { __typename?: "TodoDeletePayload"; deletedId: string } | null;
+};
 
 export type TodoUpdateMutationVariables = Exact<{
-  id: Scalars['ID']
-  title?: InputMaybe<Scalars['String']>
-  complete?: InputMaybe<Scalars['Boolean']>
-}>
+  id: Scalars["ID"];
+  title?: InputMaybe<Scalars["String"]>;
+  description?: InputMaybe<Scalars["String"]>;
+  complete?: InputMaybe<Scalars["Boolean"]>;
+}>;
 
 export type TodoUpdateMutation = {
-  __typename?: 'Mutation'
+  __typename?: "Mutation";
   todoUpdate?: {
-    __typename?: 'TodoUpdatePayload'
+    __typename?: "TodoUpdatePayload";
     todo?: {
-      __typename?: 'Todo'
-      id: string
-      title: string
-      complete: boolean
-    } | null
-  } | null
-}
+      __typename?: "Todo";
+      id: string;
+      title: string;
+      description?: string | null;
+      complete: boolean;
+    } | null;
+  } | null;
+};
 
 export const TodoFragmentDoc = {
-  kind: 'Document',
+  kind: "Document",
   definitions: [
     {
-      kind: 'FragmentDefinition',
-      name: { kind: 'Name', value: 'Todo' },
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "Todo" },
       typeCondition: {
-        kind: 'NamedType',
-        name: { kind: 'Name', value: 'Todo' }
+        kind: "NamedType",
+        name: { kind: "Name", value: "Todo" },
       },
       selectionSet: {
-        kind: 'SelectionSet',
+        kind: "SelectionSet",
         selections: [
-          { kind: 'Field', name: { kind: 'Name', value: 'id' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'title' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'complete' } }
-        ]
-      }
-    }
-  ]
-} as unknown as DocumentNode<TodoFragment, unknown>
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "title" } },
+          { kind: "Field", name: { kind: "Name", value: "description" } },
+          { kind: "Field", name: { kind: "Name", value: "complete" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<TodoFragment, unknown>;
 export const TodoListFragmentDoc = {
-  kind: 'Document',
+  kind: "Document",
   definitions: [
     {
-      kind: 'FragmentDefinition',
-      name: { kind: 'Name', value: 'TodoList' },
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "TodoList" },
       typeCondition: {
-        kind: 'NamedType',
-        name: { kind: 'Name', value: 'TodoList' }
+        kind: "NamedType",
+        name: { kind: "Name", value: "TodoList" },
       },
       selectionSet: {
-        kind: 'SelectionSet',
+        kind: "SelectionSet",
         selections: [
-          { kind: 'Field', name: { kind: 'Name', value: 'id' } },
-          { kind: 'Field', name: { kind: 'Name', value: 'title' } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "title" } },
           {
-            kind: 'Field',
-            name: { kind: 'Name', value: 'todos' },
+            kind: "Field",
+            name: { kind: "Name", value: "todos" },
             selectionSet: {
-              kind: 'SelectionSet',
+              kind: "SelectionSet",
               selections: [
                 {
-                  kind: 'FragmentSpread',
-                  name: { kind: 'Name', value: 'Todo' }
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "Todo" },
+                },
+              ],
+            },
+          },
+        ],
+      },
     },
-    ...TodoFragmentDoc.definitions
-  ]
-} as unknown as DocumentNode<TodoListFragment, unknown>
+    ...TodoFragmentDoc.definitions,
+  ],
+} as unknown as DocumentNode<TodoListFragment, unknown>;
 export const TodoListsDocument = {
-  kind: 'Document',
+  kind: "Document",
   definitions: [
     {
-      kind: 'OperationDefinition',
-      operation: 'query',
-      name: { kind: 'Name', value: 'TodoLists' },
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "TodoLists" },
       selectionSet: {
-        kind: 'SelectionSet',
+        kind: "SelectionSet",
         selections: [
           {
-            kind: 'Field',
-            name: { kind: 'Name', value: 'todoListCollection' },
+            kind: "Field",
+            name: { kind: "Name", value: "todoListCollection" },
             arguments: [
               {
-                kind: 'Argument',
-                name: { kind: 'Name', value: 'first' },
-                value: { kind: 'IntValue', value: '100' }
-              }
+                kind: "Argument",
+                name: { kind: "Name", value: "first" },
+                value: { kind: "IntValue", value: "100" },
+              },
             ],
             selectionSet: {
-              kind: 'SelectionSet',
+              kind: "SelectionSet",
               selections: [
                 {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: 'edges' },
+                  kind: "Field",
+                  name: { kind: "Name", value: "edges" },
                   selectionSet: {
-                    kind: 'SelectionSet',
+                    kind: "SelectionSet",
                     selections: [
                       {
-                        kind: 'Field',
-                        name: { kind: 'Name', value: 'node' },
+                        kind: "Field",
+                        name: { kind: "Name", value: "node" },
                         selectionSet: {
-                          kind: 'SelectionSet',
+                          kind: "SelectionSet",
                           selections: [
                             {
-                              kind: 'FragmentSpread',
-                              name: { kind: 'Name', value: 'TodoList' }
-                            }
-                          ]
-                        }
-                      }
-                    ]
-                  }
-                }
-              ]
-            }
-          }
-        ]
-      }
+                              kind: "FragmentSpread",
+                              name: { kind: "Name", value: "TodoList" },
+                            },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
     },
-    ...TodoListFragmentDoc.definitions
-  ]
-} as unknown as DocumentNode<TodoListsQuery, TodoListsQueryVariables>
+    ...TodoListFragmentDoc.definitions,
+  ],
+} as unknown as DocumentNode<TodoListsQuery, TodoListsQueryVariables>;
 export const TodoListCreateDocument = {
-  kind: 'Document',
+  kind: "Document",
   definitions: [
     {
-      kind: 'OperationDefinition',
-      operation: 'mutation',
-      name: { kind: 'Name', value: 'TodoListCreate' },
+      kind: "OperationDefinition",
+      operation: "mutation",
+      name: { kind: "Name", value: "TodoListCreate" },
       variableDefinitions: [
         {
-          kind: 'VariableDefinition',
+          kind: "VariableDefinition",
           variable: {
-            kind: 'Variable',
-            name: { kind: 'Name', value: 'title' }
+            kind: "Variable",
+            name: { kind: "Name", value: "title" },
           },
           type: {
-            kind: 'NonNullType',
-            type: { kind: 'NamedType', name: { kind: 'Name', value: 'String' } }
-          }
-        }
+            kind: "NonNullType",
+            type: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "String" },
+            },
+          },
+        },
       ],
       selectionSet: {
-        kind: 'SelectionSet',
+        kind: "SelectionSet",
         selections: [
           {
-            kind: 'Field',
-            name: { kind: 'Name', value: 'todoListCreate' },
+            kind: "Field",
+            name: { kind: "Name", value: "todoListCreate" },
             arguments: [
               {
-                kind: 'Argument',
-                name: { kind: 'Name', value: 'input' },
+                kind: "Argument",
+                name: { kind: "Name", value: "input" },
                 value: {
-                  kind: 'ObjectValue',
+                  kind: "ObjectValue",
                   fields: [
                     {
-                      kind: 'ObjectField',
-                      name: { kind: 'Name', value: 'title' },
+                      kind: "ObjectField",
+                      name: { kind: "Name", value: "title" },
                       value: {
-                        kind: 'Variable',
-                        name: { kind: 'Name', value: 'title' }
-                      }
-                    }
-                  ]
-                }
-              }
+                        kind: "Variable",
+                        name: { kind: "Name", value: "title" },
+                      },
+                    },
+                  ],
+                },
+              },
             ],
             selectionSet: {
-              kind: 'SelectionSet',
+              kind: "SelectionSet",
               selections: [
                 {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: 'todoList' },
+                  kind: "Field",
+                  name: { kind: "Name", value: "todoList" },
                   selectionSet: {
-                    kind: 'SelectionSet',
+                    kind: "SelectionSet",
                     selections: [
                       {
-                        kind: 'FragmentSpread',
-                        name: { kind: 'Name', value: 'TodoList' }
-                      }
-                    ]
-                  }
-                }
-              ]
-            }
-          }
-        ]
-      }
+                        kind: "FragmentSpread",
+                        name: { kind: "Name", value: "TodoList" },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
     },
-    ...TodoListFragmentDoc.definitions
-  ]
+    ...TodoListFragmentDoc.definitions,
+  ],
 } as unknown as DocumentNode<
   TodoListCreateMutation,
   TodoListCreateMutationVariables
->
+>;
 export const TodoCreateDocument = {
-  kind: 'Document',
+  kind: "Document",
   definitions: [
     {
-      kind: 'OperationDefinition',
-      operation: 'mutation',
-      name: { kind: 'Name', value: 'TodoCreate' },
+      kind: "OperationDefinition",
+      operation: "mutation",
+      name: { kind: "Name", value: "TodoCreate" },
       variableDefinitions: [
         {
-          kind: 'VariableDefinition',
+          kind: "VariableDefinition",
           variable: {
-            kind: 'Variable',
-            name: { kind: 'Name', value: 'title' }
+            kind: "Variable",
+            name: { kind: "Name", value: "title" },
           },
           type: {
-            kind: 'NonNullType',
-            type: { kind: 'NamedType', name: { kind: 'Name', value: 'String' } }
-          }
+            kind: "NonNullType",
+            type: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "String" },
+            },
+          },
         },
         {
-          kind: 'VariableDefinition',
+          kind: "VariableDefinition",
           variable: {
-            kind: 'Variable',
-            name: { kind: 'Name', value: 'todoListId' }
+            kind: "Variable",
+            name: { kind: "Name", value: "description" },
+          },
+          type: { kind: "NamedType", name: { kind: "Name", value: "String" } },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: {
+            kind: "Variable",
+            name: { kind: "Name", value: "todoListId" },
           },
           type: {
-            kind: 'NonNullType',
-            type: { kind: 'NamedType', name: { kind: 'Name', value: 'ID' } }
-          }
-        }
+            kind: "NonNullType",
+            type: { kind: "NamedType", name: { kind: "Name", value: "ID" } },
+          },
+        },
       ],
       selectionSet: {
-        kind: 'SelectionSet',
+        kind: "SelectionSet",
         selections: [
           {
-            kind: 'Field',
-            name: { kind: 'Name', value: 'todoCreate' },
+            kind: "Field",
+            name: { kind: "Name", value: "todoCreate" },
             arguments: [
               {
-                kind: 'Argument',
-                name: { kind: 'Name', value: 'input' },
+                kind: "Argument",
+                name: { kind: "Name", value: "input" },
                 value: {
-                  kind: 'ObjectValue',
+                  kind: "ObjectValue",
                   fields: [
                     {
-                      kind: 'ObjectField',
-                      name: { kind: 'Name', value: 'title' },
+                      kind: "ObjectField",
+                      name: { kind: "Name", value: "title" },
                       value: {
-                        kind: 'Variable',
-                        name: { kind: 'Name', value: 'title' }
-                      }
+                        kind: "Variable",
+                        name: { kind: "Name", value: "title" },
+                      },
                     },
                     {
-                      kind: 'ObjectField',
-                      name: { kind: 'Name', value: 'complete' },
-                      value: { kind: 'BooleanValue', value: false }
+                      kind: "ObjectField",
+                      name: { kind: "Name", value: "description" },
+                      value: {
+                        kind: "Variable",
+                        name: { kind: "Name", value: "description" },
+                      },
                     },
                     {
-                      kind: 'ObjectField',
-                      name: { kind: 'Name', value: 'list' },
+                      kind: "ObjectField",
+                      name: { kind: "Name", value: "complete" },
+                      value: { kind: "BooleanValue", value: false },
+                    },
+                    {
+                      kind: "ObjectField",
+                      name: { kind: "Name", value: "list" },
                       value: {
-                        kind: 'ObjectValue',
+                        kind: "ObjectValue",
                         fields: [
                           {
-                            kind: 'ObjectField',
-                            name: { kind: 'Name', value: 'link' },
+                            kind: "ObjectField",
+                            name: { kind: "Name", value: "link" },
                             value: {
-                              kind: 'Variable',
-                              name: { kind: 'Name', value: 'todoListId' }
-                            }
-                          }
-                        ]
-                      }
-                    }
-                  ]
-                }
-              }
+                              kind: "Variable",
+                              name: { kind: "Name", value: "todoListId" },
+                            },
+                          },
+                        ],
+                      },
+                    },
+                  ],
+                },
+              },
             ],
             selectionSet: {
-              kind: 'SelectionSet',
+              kind: "SelectionSet",
               selections: [
                 {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: 'todo' },
+                  kind: "Field",
+                  name: { kind: "Name", value: "todo" },
                   selectionSet: {
-                    kind: 'SelectionSet',
+                    kind: "SelectionSet",
                     selections: [
                       {
-                        kind: 'FragmentSpread',
-                        name: { kind: 'Name', value: 'Todo' }
-                      }
-                    ]
-                  }
-                }
-              ]
-            }
-          }
-        ]
-      }
+                        kind: "FragmentSpread",
+                        name: { kind: "Name", value: "Todo" },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
     },
-    ...TodoFragmentDoc.definitions
-  ]
-} as unknown as DocumentNode<TodoCreateMutation, TodoCreateMutationVariables>
+    ...TodoFragmentDoc.definitions,
+  ],
+} as unknown as DocumentNode<TodoCreateMutation, TodoCreateMutationVariables>;
 export const TodoListDeleteDocument = {
-  kind: 'Document',
+  kind: "Document",
   definitions: [
     {
-      kind: 'OperationDefinition',
-      operation: 'mutation',
-      name: { kind: 'Name', value: 'TodoListDelete' },
+      kind: "OperationDefinition",
+      operation: "mutation",
+      name: { kind: "Name", value: "TodoListDelete" },
       variableDefinitions: [
         {
-          kind: 'VariableDefinition',
-          variable: { kind: 'Variable', name: { kind: 'Name', value: 'id' } },
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "id" } },
           type: {
-            kind: 'NonNullType',
-            type: { kind: 'NamedType', name: { kind: 'Name', value: 'ID' } }
-          }
-        }
+            kind: "NonNullType",
+            type: { kind: "NamedType", name: { kind: "Name", value: "ID" } },
+          },
+        },
       ],
       selectionSet: {
-        kind: 'SelectionSet',
+        kind: "SelectionSet",
         selections: [
           {
-            kind: 'Field',
-            name: { kind: 'Name', value: 'todoListDelete' },
+            kind: "Field",
+            name: { kind: "Name", value: "todoListDelete" },
             arguments: [
               {
-                kind: 'Argument',
-                name: { kind: 'Name', value: 'id' },
-                value: { kind: 'Variable', name: { kind: 'Name', value: 'id' } }
-              }
+                kind: "Argument",
+                name: { kind: "Name", value: "id" },
+                value: {
+                  kind: "Variable",
+                  name: { kind: "Name", value: "id" },
+                },
+              },
             ],
             selectionSet: {
-              kind: 'SelectionSet',
+              kind: "SelectionSet",
               selections: [
-                { kind: 'Field', name: { kind: 'Name', value: 'deletedId' } }
-              ]
-            }
-          }
-        ]
-      }
-    }
-  ]
+                { kind: "Field", name: { kind: "Name", value: "deletedId" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
 } as unknown as DocumentNode<
   TodoListDeleteMutation,
   TodoListDeleteMutationVariables
->
+>;
 export const TodoListUpdateDocument = {
-  kind: 'Document',
+  kind: "Document",
   definitions: [
     {
-      kind: 'OperationDefinition',
-      operation: 'mutation',
-      name: { kind: 'Name', value: 'TodoListUpdate' },
+      kind: "OperationDefinition",
+      operation: "mutation",
+      name: { kind: "Name", value: "TodoListUpdate" },
       variableDefinitions: [
         {
-          kind: 'VariableDefinition',
-          variable: { kind: 'Variable', name: { kind: 'Name', value: 'id' } },
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "id" } },
           type: {
-            kind: 'NonNullType',
-            type: { kind: 'NamedType', name: { kind: 'Name', value: 'ID' } }
-          }
+            kind: "NonNullType",
+            type: { kind: "NamedType", name: { kind: "Name", value: "ID" } },
+          },
         },
         {
-          kind: 'VariableDefinition',
+          kind: "VariableDefinition",
           variable: {
-            kind: 'Variable',
-            name: { kind: 'Name', value: 'title' }
+            kind: "Variable",
+            name: { kind: "Name", value: "title" },
           },
-          type: { kind: 'NamedType', name: { kind: 'Name', value: 'String' } }
-        }
+          type: { kind: "NamedType", name: { kind: "Name", value: "String" } },
+        },
       ],
       selectionSet: {
-        kind: 'SelectionSet',
+        kind: "SelectionSet",
         selections: [
           {
-            kind: 'Field',
-            name: { kind: 'Name', value: 'todoListUpdate' },
+            kind: "Field",
+            name: { kind: "Name", value: "todoListUpdate" },
             arguments: [
               {
-                kind: 'Argument',
-                name: { kind: 'Name', value: 'id' },
-                value: { kind: 'Variable', name: { kind: 'Name', value: 'id' } }
+                kind: "Argument",
+                name: { kind: "Name", value: "id" },
+                value: {
+                  kind: "Variable",
+                  name: { kind: "Name", value: "id" },
+                },
               },
               {
-                kind: 'Argument',
-                name: { kind: 'Name', value: 'input' },
+                kind: "Argument",
+                name: { kind: "Name", value: "input" },
                 value: {
-                  kind: 'ObjectValue',
+                  kind: "ObjectValue",
                   fields: [
                     {
-                      kind: 'ObjectField',
-                      name: { kind: 'Name', value: 'title' },
+                      kind: "ObjectField",
+                      name: { kind: "Name", value: "title" },
                       value: {
-                        kind: 'Variable',
-                        name: { kind: 'Name', value: 'title' }
-                      }
-                    }
-                  ]
-                }
-              }
+                        kind: "Variable",
+                        name: { kind: "Name", value: "title" },
+                      },
+                    },
+                  ],
+                },
+              },
             ],
             selectionSet: {
-              kind: 'SelectionSet',
+              kind: "SelectionSet",
               selections: [
                 {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: 'todoList' },
+                  kind: "Field",
+                  name: { kind: "Name", value: "todoList" },
                   selectionSet: {
-                    kind: 'SelectionSet',
+                    kind: "SelectionSet",
                     selections: [
                       {
-                        kind: 'FragmentSpread',
-                        name: { kind: 'Name', value: 'TodoList' }
-                      }
-                    ]
-                  }
-                }
-              ]
-            }
-          }
-        ]
-      }
+                        kind: "FragmentSpread",
+                        name: { kind: "Name", value: "TodoList" },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
     },
-    ...TodoListFragmentDoc.definitions
-  ]
+    ...TodoListFragmentDoc.definitions,
+  ],
 } as unknown as DocumentNode<
   TodoListUpdateMutation,
   TodoListUpdateMutationVariables
->
+>;
 export const TodoDeleteDocument = {
-  kind: 'Document',
+  kind: "Document",
   definitions: [
     {
-      kind: 'OperationDefinition',
-      operation: 'mutation',
-      name: { kind: 'Name', value: 'TodoDelete' },
+      kind: "OperationDefinition",
+      operation: "mutation",
+      name: { kind: "Name", value: "TodoDelete" },
       variableDefinitions: [
         {
-          kind: 'VariableDefinition',
-          variable: { kind: 'Variable', name: { kind: 'Name', value: 'id' } },
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "id" } },
           type: {
-            kind: 'NonNullType',
-            type: { kind: 'NamedType', name: { kind: 'Name', value: 'ID' } }
-          }
-        }
+            kind: "NonNullType",
+            type: { kind: "NamedType", name: { kind: "Name", value: "ID" } },
+          },
+        },
       ],
       selectionSet: {
-        kind: 'SelectionSet',
+        kind: "SelectionSet",
         selections: [
           {
-            kind: 'Field',
-            name: { kind: 'Name', value: 'todoDelete' },
+            kind: "Field",
+            name: { kind: "Name", value: "todoDelete" },
             arguments: [
               {
-                kind: 'Argument',
-                name: { kind: 'Name', value: 'id' },
-                value: { kind: 'Variable', name: { kind: 'Name', value: 'id' } }
-              }
+                kind: "Argument",
+                name: { kind: "Name", value: "id" },
+                value: {
+                  kind: "Variable",
+                  name: { kind: "Name", value: "id" },
+                },
+              },
             ],
             selectionSet: {
-              kind: 'SelectionSet',
+              kind: "SelectionSet",
               selections: [
-                { kind: 'Field', name: { kind: 'Name', value: 'deletedId' } }
-              ]
-            }
-          }
-        ]
-      }
-    }
-  ]
-} as unknown as DocumentNode<TodoDeleteMutation, TodoDeleteMutationVariables>
+                { kind: "Field", name: { kind: "Name", value: "deletedId" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<TodoDeleteMutation, TodoDeleteMutationVariables>;
 export const TodoUpdateDocument = {
-  kind: 'Document',
+  kind: "Document",
   definitions: [
     {
-      kind: 'OperationDefinition',
-      operation: 'mutation',
-      name: { kind: 'Name', value: 'TodoUpdate' },
+      kind: "OperationDefinition",
+      operation: "mutation",
+      name: { kind: "Name", value: "TodoUpdate" },
       variableDefinitions: [
         {
-          kind: 'VariableDefinition',
-          variable: { kind: 'Variable', name: { kind: 'Name', value: 'id' } },
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "id" } },
           type: {
-            kind: 'NonNullType',
-            type: { kind: 'NamedType', name: { kind: 'Name', value: 'ID' } }
-          }
+            kind: "NonNullType",
+            type: { kind: "NamedType", name: { kind: "Name", value: "ID" } },
+          },
         },
         {
-          kind: 'VariableDefinition',
+          kind: "VariableDefinition",
           variable: {
-            kind: 'Variable',
-            name: { kind: 'Name', value: 'title' }
+            kind: "Variable",
+            name: { kind: "Name", value: "title" },
           },
-          type: { kind: 'NamedType', name: { kind: 'Name', value: 'String' } }
+          type: { kind: "NamedType", name: { kind: "Name", value: "String" } },
         },
         {
-          kind: 'VariableDefinition',
+          kind: "VariableDefinition",
           variable: {
-            kind: 'Variable',
-            name: { kind: 'Name', value: 'complete' }
+            kind: "Variable",
+            name: { kind: "Name", value: "description" },
           },
-          type: { kind: 'NamedType', name: { kind: 'Name', value: 'Boolean' } }
-        }
+          type: { kind: "NamedType", name: { kind: "Name", value: "String" } },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: {
+            kind: "Variable",
+            name: { kind: "Name", value: "complete" },
+          },
+          type: { kind: "NamedType", name: { kind: "Name", value: "Boolean" } },
+        },
       ],
       selectionSet: {
-        kind: 'SelectionSet',
+        kind: "SelectionSet",
         selections: [
           {
-            kind: 'Field',
-            name: { kind: 'Name', value: 'todoUpdate' },
+            kind: "Field",
+            name: { kind: "Name", value: "todoUpdate" },
             arguments: [
               {
-                kind: 'Argument',
-                name: { kind: 'Name', value: 'id' },
-                value: { kind: 'Variable', name: { kind: 'Name', value: 'id' } }
+                kind: "Argument",
+                name: { kind: "Name", value: "id" },
+                value: {
+                  kind: "Variable",
+                  name: { kind: "Name", value: "id" },
+                },
               },
               {
-                kind: 'Argument',
-                name: { kind: 'Name', value: 'input' },
+                kind: "Argument",
+                name: { kind: "Name", value: "input" },
                 value: {
-                  kind: 'ObjectValue',
+                  kind: "ObjectValue",
                   fields: [
                     {
-                      kind: 'ObjectField',
-                      name: { kind: 'Name', value: 'title' },
+                      kind: "ObjectField",
+                      name: { kind: "Name", value: "title" },
                       value: {
-                        kind: 'Variable',
-                        name: { kind: 'Name', value: 'title' }
-                      }
+                        kind: "Variable",
+                        name: { kind: "Name", value: "title" },
+                      },
                     },
                     {
-                      kind: 'ObjectField',
-                      name: { kind: 'Name', value: 'complete' },
+                      kind: "ObjectField",
+                      name: { kind: "Name", value: "description" },
                       value: {
-                        kind: 'Variable',
-                        name: { kind: 'Name', value: 'complete' }
-                      }
-                    }
-                  ]
-                }
-              }
+                        kind: "Variable",
+                        name: { kind: "Name", value: "description" },
+                      },
+                    },
+                    {
+                      kind: "ObjectField",
+                      name: { kind: "Name", value: "complete" },
+                      value: {
+                        kind: "Variable",
+                        name: { kind: "Name", value: "complete" },
+                      },
+                    },
+                  ],
+                },
+              },
             ],
             selectionSet: {
-              kind: 'SelectionSet',
+              kind: "SelectionSet",
               selections: [
                 {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: 'todo' },
+                  kind: "Field",
+                  name: { kind: "Name", value: "todo" },
                   selectionSet: {
-                    kind: 'SelectionSet',
+                    kind: "SelectionSet",
                     selections: [
                       {
-                        kind: 'FragmentSpread',
-                        name: { kind: 'Name', value: 'Todo' }
-                      }
-                    ]
-                  }
-                }
-              ]
-            }
-          }
-        ]
-      }
+                        kind: "FragmentSpread",
+                        name: { kind: "Name", value: "Todo" },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
     },
-    ...TodoFragmentDoc.definitions
-  ]
-} as unknown as DocumentNode<TodoUpdateMutation, TodoUpdateMutationVariables>
+    ...TodoFragmentDoc.definitions,
+  ],
+} as unknown as DocumentNode<TodoUpdateMutation, TodoUpdateMutationVariables>;

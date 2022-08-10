@@ -6,6 +6,7 @@ const TodoListCreateTodo = ({ todoListId }: { todoListId: string }) => {
   const context = useMemo(() => ({ additionalTypenames: ['Todo'] }), [])
 
   const [title, setTitle] = useState<string>('')
+  const [description, setDescription] = useState<string>('')
 
   const [{ fetching }, createTodo] = useMutation(TodoCreateDocument)
 
@@ -13,10 +14,14 @@ const TodoListCreateTodo = ({ todoListId }: { todoListId: string }) => {
     event.preventDefault()
     createTodo({ title, todoListId }, context)
     setTitle('')
+    setDescription('')
   }
 
   const onChangeTitle = (event: ChangeEvent<HTMLInputElement>) =>
     setTitle(event.target.value)
+
+  const onChangeDescription = (event: ChangeEvent<HTMLInputElement>) =>
+    setDescription(event.target.value)
 
   return (
     <form
@@ -28,6 +33,13 @@ const TodoListCreateTodo = ({ todoListId }: { todoListId: string }) => {
         value={title}
         placeholder="Todo title"
         onChange={onChangeTitle}
+        className="block w-full px-2 py-1 text-sm text-gray-900 placeholder-gray-400 border border-gray-300 rounded-md bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+      />
+      <input
+        required
+        value={description}
+        placeholder="Todo description"
+        onChange={onChangeDescription}
         className="block w-full px-2 py-1 text-sm text-gray-900 placeholder-gray-400 border border-gray-300 rounded-md bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
       />
       <button
