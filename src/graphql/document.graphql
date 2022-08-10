@@ -9,6 +9,7 @@ fragment TodoList on TodoList {
 fragment Todo on Todo {
   id
   title
+  description
   complete
 }
 
@@ -30,9 +31,9 @@ mutation TodoListCreate($title: String!) {
   }
 }
 
-mutation TodoCreate($title: String!, $todoListId: ID!) {
+mutation TodoCreate($title: String!, $description: String, $todoListId: ID!) {
   todoCreate(
-    input: { title: $title, complete: false, list: { link: $todoListId } }
+    input: { title: $title, description: $description, complete: false, list: { link: $todoListId } }
   ) {
     todo {
       ...Todo
@@ -60,8 +61,8 @@ mutation TodoDelete($id: ID!) {
   }
 }
 
-mutation TodoUpdate($id: ID!, $title: String, $complete: Boolean) {
-  todoUpdate(id: $id, input: { title: $title, complete: $complete }) {
+mutation TodoUpdate($id: ID!, $title: String, $description: String, $complete: Boolean) {
+  todoUpdate(id: $id, input: { title: $title, description: $description, complete: $complete }) {
     todo {
       ...Todo
     }
