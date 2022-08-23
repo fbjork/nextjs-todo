@@ -1,4 +1,4 @@
-import type { NextApiRequest, NextApiResponse } from 'next'
+import type { NextRequest, NextResponse } from 'next'
 import serverSideFetch from 'utils/server-side-fetch'
 
 type Data = {
