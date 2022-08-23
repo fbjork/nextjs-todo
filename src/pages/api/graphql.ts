@@ -1,4 +1,4 @@
-import type { NextRequest, NextResponse } from 'next'
+import { NextRequest, NextResponse } from 'next/server'
 import serverSideFetch from 'utils/server-side-fetch'
 
 type Data = {
