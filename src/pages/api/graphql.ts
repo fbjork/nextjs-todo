@@ -15,13 +15,12 @@ export const config = {
 }
 
 export default async function handler(
-  req: NextRequest,
-  res: NextResponse
+  req: NextRequest
 ) {
   try {
     switch (req?.method?.toUpperCase()) {
       case 'POST':
-        return res.json(await serverSideFetch(req.body))
+        return NextResponse.json(await serverSideFetch(req.body))
       default:
         return res.status(405).json({ status: 405 })
     }
