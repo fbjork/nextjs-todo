@@ -16,7 +16,7 @@ export const config = {
 
 export default async function handler(
   req: NextRequest,
-  res: NextResponse<Data | Error>
+  res: NextResponse
 ) {
   try {
     switch (req?.method?.toUpperCase()) {
