@@ -21,7 +21,7 @@ export default async function handler(
   try {
     switch (req?.method?.toUpperCase()) {
       case 'POST':
-        return res.status(200).json(await serverSideFetch(req.body))
+        return res.json(await serverSideFetch(req.body))
       default:
         return res.status(405).json({ status: 405 })
     }
